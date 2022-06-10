@@ -13,3 +13,12 @@
 .super-special {
     background-color: greenyellow;
 }
+
+.urgent {
+    /* text-decoration:  overline; */
+    background-color: red;
+}
+
+.hidden {
+    display: none;
+}

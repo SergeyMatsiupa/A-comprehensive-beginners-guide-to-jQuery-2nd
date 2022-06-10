@@ -80,6 +80,7 @@ $ ('li') .each (function (index, elem) {
 
 
 $ ('li').click (function () {
+    $('#info').html($(this).css('color'));
     $ (this) .addClass ('clicked');
 })
 .find ('span')
@@ -137,12 +138,82 @@ var listAndListItems = list1.add('#my-unordered-list li');
 console.log('listAndListItems', listAndListItems);
 
 
-$ ('#my-unordered-list')
-.find('#ffff li')
-// We are now working on the menu items
-.addClass ('special')
-.end()
-// We are now back on the same list
-.addClass('super-special');
+// $ ('#my-unordered-list')
+// .find('li#ffff')
+// // We are now working on the menu items
+// .addClass ('special')
+// .end()
+// // We are now back on the same list
+// .addClass('super-special');
+
+var list = $ ('#my-unordered-list');
+var listItems = list.find ('li#ffff');
+listItems.addClass ('special');
+// list.addClass ('super-special');
 
 
+listItems.addClass ('super-special');
+$ ('li.special')
+.siblings ()
+ // We are now working on the siblings of the previous selection
+// .removeClass ('super-special')
+.addBack ()
+// // Now we are working on the original menu items and its siblings ** together **
+// .addClass ('urgent');
+
+var specialListItems = $ ('li.special');
+var otherListItems = specialListItems.siblings ();
+otherListItems.removeClass ('super-special');
+specialListItems.add(otherListItems).addClass ('urgent');
+
+
+$('li') .addClass ('hidden');
+$ ('li') .eq (1) .removeClass ('hidden');
+$('li') .removeClass ('hidden');
+
+$ ('#header p').click((e) => {
+    $ ('li') .eq (0) .toggleClass ('hidden');
+    $ (this).toggleClass('super-special');
+});
+
+
+var list2 = $ ('#my-unordered-list');
+var width = Math.floor(list2.width() * 0.1);
+list.find ('li').each(function (index, elem) {
+    var padding = width * index;
+    $(elem).css('padding-left', padding + 'px');
+});
+
+
+$ ('li') .eq (1) .css ({
+    'font-size': '20px',
+    'padding-right': '20px'
+});
+
+
+$ ('input[type="text"]') .val ('new value');
+
+
+$ ('input[type = "checkbox"]').prop('checked', 'checked');
+
+
+$ ('a').attr('href', 'https://www.google.com/');
+
+
+$('a').attr('href', function (index, value) {
+    return value + '?special=true';
+});
+
+
+$('#header form button').first().click((e) => {
+    const varT = $('input[type="text"]').first().val();
+    $('#info').html(varT);
+})
+
+
+var listItem3 = $ ('#my-unordered-list li').first();
+    // listItem3.each(function (index, elem) {
+    //     $(this).text( `${index}  -  ${$(this).text()}` );
+    // }); 
+listItem3.css({'background-color': 'blue'});
+listItem3.appendTo('#my-unordered-list');
